@@ -7,7 +7,6 @@ public class Talk {
     private String subject;
     private String technology;
     private String notes;
-    private long dated;
 
     public Talk() {
 
@@ -37,11 +36,4 @@ public class Talk {
         this.notes = notes;
     }
 
-    public long getDated() {
-        return dated;
-    }
-
-    public void setDated(long dated) {
-        this.dated = dated;
-    }
 }

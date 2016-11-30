@@ -6,7 +6,7 @@ package com.alekea.model;
 public class Clientz {
     private int id;
     private String token;
-    private long dated;
+
 
     public Clientz(String token){
         this.token = token;
@@ -28,11 +28,4 @@ public class Clientz {
         this.token = token;
     }
 
-    public long getDated() {
-        return dated;
-    }
-
-    public void setDated(long dated) {
-        this.dated = dated;
-    }
 }

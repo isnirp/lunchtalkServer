@@ -3,15 +3,24 @@ package com.alekea.dao.impl;
 import com.alekea.dao.ITalkDao;
 import com.alekea.model.Talk;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Prince on 23.11.2016.
  */
 public class TalkDaoImpl implements ITalkDao {
-    @Override
-    public void addTalk(Talk talk) {
+    private Map<String,Talk> mapTalk;
 
+    public TalkDaoImpl(){
+        mapTalk = new LinkedHashMap<>();
+    }
+    @Override
+    public String saveTalk(Talk talk) {
+        mapTalk.put(talk.getSubject(),talk);
+        return talk.getSubject();
     }
 
     @Override
@@ -20,17 +29,17 @@ public class TalkDaoImpl implements ITalkDao {
     }
 
     @Override
-    public Talk getTalk(String title) {
-        return null;
+    public Talk getTalk(String subject) {
+        return mapTalk.get(subject);
     }
 
     @Override
     public List<Talk> getTalks() {
-        return null;
+        return new ArrayList<>(mapTalk.values());
     }
 
     @Override
-    public void deleteTalk() {
-
+    public void deleteTalk(String subject) {
+        mapTalk.remove(subject);
     }
 }
