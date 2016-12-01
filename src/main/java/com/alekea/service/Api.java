@@ -1,6 +1,7 @@
 package com.alekea.service;
 
 import com.alekea.model.Talk;
+import com.google.gson.Gson;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -10,25 +11,24 @@ import static spark.Spark.post;
  */
 public class Api {
     private Controller controller;
+    private Gson gson;
 
-    public Api(Controller controller) {
-        this.controller = controller;
+    public Api() {
+        controller = new Controller();
+        gson = new Gson();
     }
 
     public void registerRoutes() {
         //get all talk
-        get("/talks", ((request, response) -> controller.getTalkAll()));
+        get("/talks", ((request, response) -> controller.getTalkAll()),gson::toJson);
         //add talk
-        post("/talks", ((request, response) -> {
+        post("/addtalk", ((request, response) -> {
             Talk talk = new Talk();
-            talk.setSubject(request.params("subject"));
-            talk.setTechnology(request.params("technology"));
-            talk.setNotes(request.params("notes"));
+            talk.setSubject(request.queryParams("sub"));
+            talk.setTechnology(request.queryParams("tech"));
+            talk.setNotes(request.queryParams("notes"));
             return controller.addTalk(talk);
         }
         ));
     }
-    //get all topics
-    //get by id
-    //send token
 }

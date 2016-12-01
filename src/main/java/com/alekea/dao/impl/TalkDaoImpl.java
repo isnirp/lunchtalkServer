@@ -20,7 +20,8 @@ public class TalkDaoImpl implements ITalkDao {
     @Override
     public String saveTalk(Talk talk) {
         mapTalk.put(talk.getSubject(),talk);
-        return talk.getSubject();
+        //return talk.getSubject();
+        return "talk added";
     }
 
     @Override

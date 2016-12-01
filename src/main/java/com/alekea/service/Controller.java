@@ -13,10 +13,10 @@ import java.util.Map;
  */
 public class Controller {
     Map<Integer,Talk> map = new LinkedHashMap<>();
-    ITalkDao talkDao = new TalkDaoImpl();
+    ITalkDao talkDao;
 
     public Controller(){
-
+        talkDao = new TalkDaoImpl();
     }
     public List<Talk> getTalkAll(){
         return talkDao.getTalks();
