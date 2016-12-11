@@ -29,7 +29,7 @@ public class Controller {
     public void registerRoutes() {
         get("talks", ((request, response) -> {
             response.type("application/json");
-            return datasource.getTalkAll();
+            return new MyResponse("ok",datasource.getTalkAll());
         }), gson::toJson);
 
         get("clients", ((request, response) -> {
