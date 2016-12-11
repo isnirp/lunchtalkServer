@@ -50,4 +50,9 @@ public class DataSourceImpl implements IDatasource {
     public Client getClient(String token) {
         return clientDao.getClient(token);
     }
+
+    @Override
+    public List<Client> getClientAll() {
+        return clientDao.getClients();
+    }
 }

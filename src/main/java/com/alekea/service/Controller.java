@@ -1,15 +1,14 @@
 package com.alekea.service;
 
 import com.alekea.dao.IDatasource;
-import com.alekea.dao.ITalkDao;
-import com.alekea.dao.impl.TalkDaoImpl;
+import com.alekea.model.Client;
 import com.alekea.model.MyResponse;
 import com.alekea.model.Talk;
+import com.alekea.util.FirebaseUtil;
 import com.google.gson.Gson;
+import spark.Response;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -30,8 +29,12 @@ public class Controller {
     public void registerRoutes() {
         get("talks", ((request, response) -> {
             response.type("application/json");
-            datasource.getTalkAll();
             return datasource.getTalkAll();
+        }), gson::toJson);
+
+        get("clients", ((request, response) -> {
+            response.type("application/json");
+            return datasource.getClientAll();
         }), gson::toJson);
 
         post("/addtalk", ((request, response) -> {
@@ -51,6 +54,27 @@ public class Controller {
             });
             return new MyResponse(msg);
         }), gson::toJson);
+
+        post("/addclient", ((request, response) -> {
+            response.type("application/json");
+            Client client = gson.fromJson(request.body(), Client.class);
+            datasource.addClient(client, new IDatasource.OnAddResourceListener() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onFailure() {
+
+                }
+            });
+            return new MyResponse("New Client");
+        }));
+    }
+
+    private void sendNotification(Talk talk) {
+
     }
 
 }

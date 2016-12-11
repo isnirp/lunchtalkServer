@@ -19,6 +19,8 @@ public interface IDatasource {
 
     Client getClient(String token);
 
+    List<Client> getClientAll();
+
     interface OnAddResourceListener{
         void onSuccess();
         void onFailure();
