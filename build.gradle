@@ -2,8 +2,6 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
-
 repositories {
     mavenCentral()
 }
@@ -13,5 +11,5 @@ dependencies {
 
     compile "com.google.code.gson:gson:2.8.0"
     compile "com.sparkjava:spark-core:2.5.2"
-    compile 'de.neuland-bfi:jade4j:0.4.0'
+    //compile 'de.neuland-bfi:jade4j:0.4.0'
 }

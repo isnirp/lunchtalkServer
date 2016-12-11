@@ -3,12 +3,12 @@ package com.alekea.model;
 /**
  * Created by Prince on 23.11.2016.
  */
-public class Clientz {
+public class Client {
     private int id;
     private String token;
 
 
-    public Clientz(String token){
+    public Client(String token){
         this.token = token;
     }
 

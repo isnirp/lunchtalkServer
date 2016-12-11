@@ -5,11 +5,13 @@ package com.alekea.model;
  */
 public class Talk {
     private String subject;
-    private String technology;
+    private String tech;
     private String notes;
 
-    public Talk() {
-
+    public Talk(String subject,String tech,String notes) {
+        this.subject = subject;
+        this.tech = tech;
+        this.notes = notes;
     }
 
     public String getSubject() {
@@ -20,12 +22,12 @@ public class Talk {
         this.subject = subject;
     }
 
-    public String getTechnology() {
-        return technology;
+    public String getTech() {
+        return tech;
     }
 
-    public void setTechnology(String technology) {
-        this.technology = technology;
+    public void setTech(String tech) {
+        this.tech = tech;
     }
 
     public String getNotes() {

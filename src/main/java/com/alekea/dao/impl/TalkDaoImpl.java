@@ -12,16 +12,18 @@ import java.util.Map;
  * Created by Prince on 23.11.2016.
  */
 public class TalkDaoImpl implements ITalkDao {
-    private Map<String,Talk> mapTalk;
+    /*
+    * Cache talk
+    * */
+    private Map<String, Talk> mapTalk;
 
-    public TalkDaoImpl(){
+    public TalkDaoImpl() {
         mapTalk = new LinkedHashMap<>();
     }
+
     @Override
-    public String saveTalk(Talk talk) {
-        mapTalk.put(talk.getSubject(),talk);
-        //return talk.getSubject();
-        return "talk added";
+    public void saveTalk(Talk talk) {
+        mapTalk.put(talk.getSubject(), talk);
     }
 
     @Override

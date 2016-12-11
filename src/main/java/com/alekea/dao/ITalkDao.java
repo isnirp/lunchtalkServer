@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Prince on 23.11.2016.
  */
 public interface ITalkDao {
-    String saveTalk(Talk talk);
+    void saveTalk(Talk talk);
 
     void updateTalk();
 
