@@ -6,24 +6,23 @@ import java.util.List;
  * Created by Fifi on 12/11/2016.
  */
 public class MyResponse {
-    private String msg;
+    private String message;
     private Object data;
-    private List<Object> lstdata;
 
-    public MyResponse(String msg) {
-        this.msg = msg;
+    public MyResponse(String message) {
+        this.message = message;
     }
 
-    public MyResponse(String msg, Object data) {
-        this.msg = msg;
+    public MyResponse(String message, Object data) {
+        this.message = message;
         this.data = data;
     }
 
     public String getMessage() {
-        return msg;
+        return message;
     }
 
     public void setMessage(String msg) {
-        this.msg = msg;
+        this.message = msg;
     }
 }

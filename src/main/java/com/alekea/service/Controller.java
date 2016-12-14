@@ -4,11 +4,7 @@ import com.alekea.dao.IDatasource;
 import com.alekea.model.Client;
 import com.alekea.model.MyResponse;
 import com.alekea.model.Talk;
-import com.alekea.util.FirebaseUtil;
 import com.google.gson.Gson;
-import spark.Response;
-
-import java.util.List;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -19,7 +15,7 @@ import static spark.Spark.post;
 public class Controller {
     private IDatasource datasource;
     private Gson gson;
-    private String msg;
+    private String message;
 
     public Controller(IDatasource datasource) {
         this.datasource = datasource;
@@ -29,7 +25,7 @@ public class Controller {
     public void registerRoutes() {
         get("talks", ((request, response) -> {
             response.type("application/json");
-            return new MyResponse("ok",datasource.getTalkAll());
+            return new MyResponse("ok", datasource.getTalkAll());
         }), gson::toJson);
 
         get("clients", ((request, response) -> {
@@ -44,15 +40,15 @@ public class Controller {
             datasource.addTalk(talk, new IDatasource.OnAddResourceListener() {
                 @Override
                 public void onSuccess() {
-                    msg = talk.getSubject() + " successfully added";
+                    message = talk.getSubject() + " successfully added";
                 }
 
                 @Override
                 public void onFailure() {
-                    msg = "failed to add talk";
+                    message = "failed to add talk";
                 }
             });
-            return new MyResponse(msg);
+            return new MyResponse(message);
         }), gson::toJson);
 
         post("/addclient", ((request, response) -> {
