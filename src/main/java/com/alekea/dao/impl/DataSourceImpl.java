@@ -1,9 +1,9 @@
 package com.alekea.dao.impl;
 
-import com.alekea.dao.IClientDao;
-import com.alekea.dao.IDatasource;
-import com.alekea.dao.ITalkDao;
-import com.alekea.model.Client;
+import com.alekea.dao.ClientDao;
+import com.alekea.dao.Datasource;
+import com.alekea.dao.TalkDao;
+import com.alekea.model.MobileClient;
 import com.alekea.model.Talk;
 
 import java.util.List;
@@ -11,11 +11,11 @@ import java.util.List;
 /**
  * Created by Fifi on 12/11/2016.
  */
-public class DataSourceImpl implements IDatasource {
-    private IClientDao clientDao;
-    private ITalkDao talkDao;
+public class DataSourceImpl implements Datasource {
+    private ClientDao clientDao;
+    private TalkDao talkDao;
 
-    public DataSourceImpl(IClientDao clientDao, ITalkDao talkDao) {
+    public DataSourceImpl(ClientDao clientDao, TalkDao talkDao) {
         this.clientDao = clientDao;
         this.talkDao = talkDao;
     }
@@ -28,7 +28,6 @@ public class DataSourceImpl implements IDatasource {
             talkDao.saveTalk(talk);
             listener.onSuccess();
         }
-
     }
 
     @Override
@@ -42,17 +41,17 @@ public class DataSourceImpl implements IDatasource {
     }
 
     @Override
-    public void addClient(Client client, OnAddResourceListener listener) {
-        clientDao.saveClient(client);
+    public void addClient(MobileClient mobileClient, OnAddResourceListener listener) {
+        clientDao.saveClient(mobileClient);
     }
 
     @Override
-    public Client getClient(String token) {
+    public MobileClient getClient(String token) {
         return clientDao.getClient(token);
     }
 
     @Override
-    public List<Client> getClientAll() {
+    public List<MobileClient> getClientAll() {
         return clientDao.getClients();
     }
 }

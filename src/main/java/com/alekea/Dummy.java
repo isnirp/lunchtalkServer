@@ -1,6 +1,6 @@
 package com.alekea;
 
-import com.alekea.dao.IDatasource;
+import com.alekea.dao.Datasource;
 import com.alekea.dao.impl.ClientDaoImpl;
 import com.alekea.dao.impl.DataSourceImpl;
 import com.alekea.dao.impl.TalkDaoImpl;
@@ -13,8 +13,17 @@ import static spark.Spark.get;
  */
 public class Dummy {
     public static void main(String[] args) {
-        IDatasource datasource = new DataSourceImpl(new ClientDaoImpl(),new TalkDaoImpl());
+        /*Datasource datasource = new DataSourceImpl(new ClientDaoImpl(),new TalkDaoImpl());
         Controller controller = new Controller(datasource);
-        controller.registerRoutes();
+        controller.registerRoutes();*/
+        /*String x = new String("ab");
+        change(x);
+        System.out.println(x);*/
+        //System.out.println(String.format("An integer: %d and a string: %s", 1, "hello"));
+        double[] arr = new double[3];
+        System.out.println(arr.getClass());
     }
+    /*public static void change(String x) {
+        x = "cd";
+    }*/
 }

@@ -3,11 +3,11 @@ package com.alekea.model;
 /**
  * Created by Fifi on 12/11/2016.
  */
-public class Message {
+public class FirebaseMessage {
     private String to;
     private Notification notification;
 
-    public Message(String to, Notification notification) {
+    public FirebaseMessage(String to, Notification notification) {
         this.to = to;
         this.notification = notification;
     }

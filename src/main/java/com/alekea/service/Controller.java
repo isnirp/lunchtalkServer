@@ -1,10 +1,21 @@
 package com.alekea.service;
 
-import com.alekea.dao.IDatasource;
-import com.alekea.model.Client;
+import com.alekea.dao.Datasource;
+import com.alekea.model.MobileClient;
+import com.alekea.model.FirebaseMessage;
 import com.alekea.model.MyResponse;
 import com.alekea.model.Talk;
+import com.alekea.util.FirebaseUtil;
 import com.google.gson.Gson;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.async.Callback;
+import com.mashape.unirest.http.exceptions.UnirestException;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Future;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -13,11 +24,11 @@ import static spark.Spark.post;
  * Created by Prince on 30.11.2016.
  */
 public class Controller {
-    private IDatasource datasource;
+    private Datasource datasource;
     private Gson gson;
     private String message;
 
-    public Controller(IDatasource datasource) {
+    public Controller(Datasource datasource) {
         this.datasource = datasource;
         gson = new Gson();
     }
@@ -37,10 +48,15 @@ public class Controller {
             response.type("application/json");
             Talk talk = gson.fromJson(request.body(), Talk.class);
 
-            datasource.addTalk(talk, new IDatasource.OnAddResourceListener() {
+            datasource.addTalk(talk, new Datasource.OnAddResourceListener() {
                 @Override
                 public void onSuccess() {
                     message = talk.getSubject() + " successfully added";
+                    //send notification to mobile client
+                    FirebaseMessage.Notification notification = new FirebaseMessage.Notification(talk.getSubject(), talk.getNotes());
+                    for (MobileClient mobileClient : datasource.getClientAll()) {
+                        sendNotification(new FirebaseMessage(mobileClient.getToken(), notification));
+                    }
                 }
 
                 @Override
@@ -53,24 +69,46 @@ public class Controller {
 
         post("/addclient", ((request, response) -> {
             response.type("application/json");
-            Client client = gson.fromJson(request.body(), Client.class);
-            datasource.addClient(client, new IDatasource.OnAddResourceListener() {
+            MobileClient mobileClient = gson.fromJson(request.body(), MobileClient.class);
+            datasource.addClient(mobileClient, new Datasource.OnAddResourceListener() {
                 @Override
                 public void onSuccess() {
-
+                    message = "New MobileClient";
                 }
 
                 @Override
                 public void onFailure() {
-
+                    message = "Adding MobileClient failed";
                 }
             });
-            return new MyResponse("New Client");
+            return new MyResponse(message);
         }));
     }
 
-    private void sendNotification(Talk talk) {
+    private void sendNotification(final FirebaseMessage firebaseMessage) {
+       /* Map<String, String> headersMap = new HashMap<>();
+        headersMap.put("Content-Type", "application/json");
+        headersMap.put("Authorization:key=", FirebaseUtil.AUTHENTICATION_KEY);
 
+        Future<HttpResponse<JsonNode>> future = Unirest.post(FirebaseUtil.SEND)
+                .headers(headersMap)
+                .body(firebaseMessage)
+                .asJsonAsync(new Callback<JsonNode>() {
+                    @Override
+                    public void completed(HttpResponse<JsonNode> httpResponse) {
+                        System.out.println(httpResponse.getStatus() + "\n" + httpResponse.getBody());
+                    }
+
+                    @Override
+                    public void failed(UnirestException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void cancelled() {
+
+                    }
+                });*/
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Prince on 23.11.2016.
  */
-public interface ITalkDao {
+public interface TalkDao {
     void saveTalk(Talk talk);
 
     void updateTalk();

@@ -1,6 +1,6 @@
 package com.alekea.dao.impl;
 
-import com.alekea.dao.ITalkDao;
+import com.alekea.dao.TalkDao;
 import com.alekea.model.Talk;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by Prince on 23.11.2016.
  */
-public class TalkDaoImpl implements ITalkDao {
+public class TalkDaoImpl implements TalkDao {
     /*
     * Cache talk
     * */
