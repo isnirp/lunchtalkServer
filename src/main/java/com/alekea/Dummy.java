@@ -13,17 +13,9 @@ import static spark.Spark.get;
  */
 public class Dummy {
     public static void main(String[] args) {
-        /*Datasource datasource = new DataSourceImpl(new ClientDaoImpl(),new TalkDaoImpl());
+        Datasource datasource = new DataSourceImpl(new ClientDaoImpl(),new TalkDaoImpl());
         Controller controller = new Controller(datasource);
-        controller.registerRoutes();*/
-        /*String x = new String("ab");
-        change(x);
-        System.out.println(x);*/
-        //System.out.println(String.format("An integer: %d and a string: %s", 1, "hello"));
-        double[] arr = new double[3];
-        System.out.println(arr.getClass());
+        controller.registerRoutes();
+
     }
-    /*public static void change(String x) {
-        x = "cd";
-    }*/
 }
