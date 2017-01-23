@@ -1,9 +1,8 @@
 package com.alekea;
 
-import com.alekea.dao.Datasource;
-import com.alekea.dao.impl.ClientDaoImpl;
-import com.alekea.dao.impl.DataSourceImpl;
-import com.alekea.dao.impl.TalkDaoImpl;
+import com.alekea.dao.impl.ClientDao;
+import com.alekea.dao.impl.DataSource;
+import com.alekea.dao.impl.TalkDao;
 import com.alekea.service.Controller;
 
 import static spark.Spark.get;
@@ -13,9 +12,8 @@ import static spark.Spark.get;
  */
 public class Dummy {
     public static void main(String[] args) {
-        Datasource datasource = new DataSourceImpl(new ClientDaoImpl(),new TalkDaoImpl());
+        DataSource datasource = new DataSource(new ClientDao(), new TalkDao());
         Controller controller = new Controller(datasource);
         controller.registerRoutes();
-
     }
 }

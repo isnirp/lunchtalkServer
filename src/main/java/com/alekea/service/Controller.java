@@ -1,21 +1,11 @@
 package com.alekea.service;
 
-import com.alekea.dao.Datasource;
+import com.alekea.dao.impl.DataSource;
 import com.alekea.model.MobileClient;
 import com.alekea.model.FirebaseMessage;
 import com.alekea.model.MyResponse;
 import com.alekea.model.Talk;
-import com.alekea.util.FirebaseUtil;
 import com.google.gson.Gson;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.Future;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -24,11 +14,11 @@ import static spark.Spark.post;
  * Created by Prince on 30.11.2016.
  */
 public class Controller {
-    private Datasource datasource;
+    private DataSource datasource;
     private Gson gson;
     private String message;
 
-    public Controller(Datasource datasource) {
+    public Controller(DataSource datasource) {
         this.datasource = datasource;
         gson = new Gson();
     }
@@ -48,7 +38,7 @@ public class Controller {
             response.type("application/json");
             Talk talk = gson.fromJson(request.body(), Talk.class);
 
-            datasource.addTalk(talk, new Datasource.OnAddResourceListener() {
+            datasource.addTalk(talk, new DataSource.OnAddResourceListener() {
                 @Override
                 public void onSuccess() {
                     message = talk.getSubject() + " successfully added";
@@ -70,7 +60,7 @@ public class Controller {
         post("/addclient", ((request, response) -> {
             response.type("application/json");
             MobileClient mobileClient = gson.fromJson(request.body(), MobileClient.class);
-            datasource.addClient(mobileClient, new Datasource.OnAddResourceListener() {
+            datasource.addClient(mobileClient, new DataSource.OnAddResourceListener() {
                 @Override
                 public void onSuccess() {
                     message = "New MobileClient";

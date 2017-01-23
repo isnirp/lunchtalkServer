@@ -1,6 +1,5 @@
 package com.alekea.dao.impl;
 
-import com.alekea.dao.ClientDao;
 import com.alekea.model.MobileClient;
 
 import java.util.ArrayList;
@@ -11,27 +10,27 @@ import java.util.Map;
 /**
  * Created by Fifi on 12/11/2016.
  */
-public class ClientDaoImpl implements ClientDao {
+public class ClientDao {
     /*
     * cache clients token
     * */
     Map<String, MobileClient> clientzMap;
 
-    public ClientDaoImpl() {
+    public ClientDao() {
         clientzMap = new HashMap<>();
     }
 
-    @Override
+
     public void saveClient(MobileClient mobileClient) {
         clientzMap.put(mobileClient.getToken(), mobileClient);
     }
 
-    @Override
+
     public MobileClient getClient(String token) {
         return clientzMap.get(token);
     }
 
-    @Override
+
     public List<MobileClient> getClients() {
         return new ArrayList<>(clientzMap.values());
     }
