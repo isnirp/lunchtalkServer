@@ -6,6 +6,7 @@ package com.alekea.model;
 public class MobileClient {
     private int id;
     private String token;
+    private String atoken;
 
 
     public MobileClient(String token){

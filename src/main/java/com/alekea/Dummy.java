@@ -1,11 +1,13 @@
 package com.alekea;
 
-import com.alekea.dao.impl.ClientDao;
-import com.alekea.dao.impl.DataSource;
-import com.alekea.dao.impl.TalkDao;
+import com.alekea.dao.ClientDao;
+import com.alekea.dao.DataSource;
+import com.alekea.dao.TalkDao;
 import com.alekea.service.Controller;
 
-import static spark.Spark.get;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Scanner;
 
 /**
  * Created by Prince on 01.12.2016.
@@ -15,5 +17,12 @@ public class Dummy {
         DataSource datasource = new DataSource(new ClientDao(), new TalkDao());
         Controller controller = new Controller(datasource);
         controller.registerRoutes();
+    }
+
+    public static class LexicoCompare implements Comparator<String> {
+        @Override
+        public int compare(String o1, String o2) {
+            return 0;
+        }
     }
 }

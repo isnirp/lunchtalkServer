@@ -1,4 +1,4 @@
-package com.alekea.dao.impl;
+package com.alekea.dao;
 
 import com.alekea.model.MobileClient;
 import com.alekea.model.Talk;

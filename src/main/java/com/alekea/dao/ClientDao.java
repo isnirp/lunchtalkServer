@@ -1,4 +1,4 @@
-package com.alekea.dao.impl;
+package com.alekea.dao;
 
 import com.alekea.model.MobileClient;
 
@@ -11,10 +11,8 @@ import java.util.Map;
  * Created by Fifi on 12/11/2016.
  */
 public class ClientDao {
-    /*
-    * cache clients token
-    * */
-    Map<String, MobileClient> clientzMap;
+
+    private Map<String, MobileClient> clientzMap;
 
     public ClientDao() {
         clientzMap = new HashMap<>();

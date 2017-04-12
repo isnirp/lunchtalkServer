@@ -1,4 +1,4 @@
-package com.alekea.dao.impl;
+package com.alekea.dao;
 
 import com.alekea.model.Talk;
 
@@ -11,9 +11,7 @@ import java.util.Map;
  * Created by Prince on 23.11.2016.
  */
 public class TalkDao {
-    /*
-    * Cache talk
-    * */
+
     private Map<String, Talk> mapTalk;
 
     public TalkDao() {

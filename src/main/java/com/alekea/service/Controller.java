@@ -1,6 +1,6 @@
 package com.alekea.service;
 
-import com.alekea.dao.impl.DataSource;
+import com.alekea.dao.DataSource;
 import com.alekea.model.MobileClient;
 import com.alekea.model.FirebaseMessage;
 import com.alekea.model.MyResponse;
