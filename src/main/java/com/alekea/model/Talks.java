@@ -9,9 +9,13 @@ public class Talks {
     private String subject;
     private String talk;
     private User user;
-    private long date;
 
     public Talks() {
+    }
+    public Talks(String subject,String talk,User user) {
+        this.subject = subject;
+        this.talk = talk;
+        this.user = user;
     }
 
     public String getSubject() {
@@ -38,11 +42,4 @@ public class Talks {
         this.user = user;
     }
 
-    public long getDate() {
-        return date;
-    }
-
-    public void setDate(long date) {
-        this.date = date;
-    }
 }

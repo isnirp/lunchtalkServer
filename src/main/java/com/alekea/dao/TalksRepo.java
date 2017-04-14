@@ -7,26 +7,34 @@ import java.util.*;
 
 /**
  * Created by Fifi on 4/12/2017.
+ *
+ * A simple repository for lunch talks
  */
 public class TalksRepo {
-    Map<User,Talks> userTalksMap = new HashMap<>();
-    private User user;
+    /*
+    * cache talks in a map
+    * key String subject
+    * value Talks
+     */
+    private Map<String, Talks> userTalksMap;
 
-    public TalksRepo(User user) {
-        this.user = user;
+    public TalksRepo() {
+        userTalksMap = new HashMap<>();
     }
 
-    public void saveTalk(Talks talks){
-        userTalksMap.put(user,talks);
+    public void addTalk(Talks talks) {
+        userTalksMap.put(talks.getSubject(), talks);
     }
-    public void deleteTalk(String subject){
 
+    public synchronized void deleteTalk(String subject) {
+        userTalksMap.remove(subject);
     }
-    private Talks getTalk(String subject){
-        
-        return null;
+
+    private Talks getTalk(String subject) {
+        return userTalksMap.get(subject);
     }
-    public List<Talks> getTalks(){
+
+    public List<Talks> getTalks() {
         return new ArrayList<>(userTalksMap.values());
     }
 }
