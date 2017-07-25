@@ -11,13 +11,13 @@ import static spark.Spark.post;
  * Created by Prince on 30.11.2016.
  */
 public class Controller {
-    private TalksRepo talksRepo;
-    private Gson gson;
+    private TalksRepo mTalksRepo;
+    private Gson mGson;
     private String message;
 
     public Controller(TalksRepo talksRepo) {
-        this.talksRepo = talksRepo;
-        gson = new Gson();
+        this.mTalksRepo = talksRepo;
+        mGson = new Gson();
     }
 
     /*
@@ -29,19 +29,19 @@ public class Controller {
         * */
         get("talks", ((request, response) -> {
             response.type("application/json");
-            return talksRepo.getTalks();
-        }), gson::toJson);
+            return mTalksRepo.getTalks();
+        }), mGson::toJson);
 
         /*
         * Route for adding new lunch talk
         * */
         post("/addtalk", ((request, response) -> {
             response.type("application/json");
-            Talks talk = gson.fromJson(request.body(), Talks.class);
-            talksRepo.addTalk(talk);
+            Talks talk = mGson.fromJson(request.body(), Talks.class);
+            mTalksRepo.addTalk(talk);
 
             return "success";
-        }), gson::toJson);
+        }), mGson::toJson);
 
     }
 }
