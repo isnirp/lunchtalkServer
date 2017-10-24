@@ -1,4 +1,4 @@
-package com.alekea.service;
+package com.alekea.adapter;
 
 import com.alekea.dao.TalksRepo;
 import com.alekea.model.Talks;
@@ -8,24 +8,19 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 
 /**
- * Created by Prince on 30.11.2016.
- *
- * Using spark to create rest api
+ * Created by Fifi on 10/24/2017.
  */
-public class Controller {
+public class TalksAdapter implements TalksContract {
     private TalksRepo mTalksRepo;
     private Gson mGson;
-    private String message;
 
-    public Controller(TalksRepo talksRepo) {
-        this.mTalksRepo = talksRepo;
+    public TalksAdapter(TalksRepo mTalksRepo) {
+        this.mTalksRepo = mTalksRepo;
         mGson = new Gson();
     }
 
-    /*
-    * Register all routes
-    * */
-    public void registerRoutes() {
+    @Override
+    public void getTalk() {
         /*
         * Route for collecting all lunch talks
         * */
@@ -33,8 +28,11 @@ public class Controller {
             response.type("application/json");
             return mTalksRepo.getTalks();
         }), mGson::toJson);
+    }
 
-        /*
+    @Override
+    public void addTalk() {
+/*
         * Route for adding new lunch talk
         * */
         post("/addtalk", ((request, response) -> {
@@ -44,6 +42,5 @@ public class Controller {
 
             return "success";
         }), mGson::toJson);
-
     }
 }

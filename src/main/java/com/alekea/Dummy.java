@@ -1,11 +1,10 @@
 package com.alekea;
 
+import com.alekea.adapter.TalksAdapter;
 import com.alekea.dao.TalksRepo;
 import com.alekea.model.Talks;
 import com.alekea.model.User;
-import com.alekea.service.Controller;
-
-import java.util.Comparator;
+import com.alekea.service.TalkService;
 
 /**
  * Created by Prince on 01.12.2016.
@@ -22,8 +21,11 @@ public class Dummy {
         talksRepo.addTalk(talk);
         talksRepo.addTalk(talk1);
 
-        Controller controller = new Controller(talksRepo);
-        controller.registerRoutes();
+        TalksAdapter adapter = new TalksAdapter(talksRepo);
+
+        TalkService talkService = new TalkService(adapter);
+        talkService.registerRoutes();
+
     }
 
 }
