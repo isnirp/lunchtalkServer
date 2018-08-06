@@ -1,1 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
+.gradle
+local.properties
+.idea
+build/
+.DS_Store
+*.iml
+*.aar
+*.zip
