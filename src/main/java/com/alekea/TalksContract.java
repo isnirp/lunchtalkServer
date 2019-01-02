@@ -1,4 +1,4 @@
-package com.alekea.adapter;
+package com.alekea;
 
 import com.alekea.model.Talks;
 

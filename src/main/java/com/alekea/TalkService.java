@@ -1,9 +1,6 @@
-package com.alekea.service;
+package com.alekea;
 
-import com.alekea.adapter.TalksAdapter;
-import com.alekea.dao.TalksRepo;
-import com.alekea.model.Talks;
-import com.google.gson.Gson;
+import com.alekea.TalksAdapter;
 
 import static spark.Spark.get;
 import static spark.Spark.post;

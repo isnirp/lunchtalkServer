@@ -1,6 +1,6 @@
-package com.alekea.adapter;
+package com.alekea;
 
-import com.alekea.dao.TalksRepo;
+import com.alekea.TalksRepo;
 import com.alekea.model.Talks;
 import com.google.gson.Gson;
 

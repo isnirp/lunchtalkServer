@@ -1,4 +1,4 @@
-package com.alekea.dao;
+package com.alekea;
 
 import com.alekea.model.Talks;
 import com.alekea.model.User;
